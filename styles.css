@@ -3,3 +3,126 @@
 *::after {
   box-sizing: border-box;
 }
+
+:root {
+    --dark-font: #222222;
+    --light-font: #888888;
+    --dark-border: #222222;
+    --light-border: #CCCCCC;
+    --star-color: #C90000;
+    --header-bg: #F6F6F7;
+}
+
+/** nav bar */
+header{
+    background-color: var(--header-bg);
+    padding: 0.5rem 0;
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+#my-cart{
+    grid-column: 2/3;
+    color: var(--light-font)
+}
+
+/** section */
+.cloth-item{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: start;
+}
+
+.item-img{
+    margin-top: 1rem;
+    width: 50%;
+    justify-self: center;
+}
+
+/** text */
+.item-text{
+    width: 50%;
+    justify-self: start;
+}
+
+.item-title, .item-price{
+    color: var(--dark-font);
+    font-weight: bold;
+    padding-bottom: 1rem;
+    border-bottom: var(--light-border) 1px solid; 
+}
+
+.item-desc, .item-size{
+    color: var(--light-font);
+}
+
+.star{
+    color: var(--star-color);
+}
+
+/** button */
+.btn{
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-group{
+    margin-bottom: 1rem;
+}
+
+.btn--size{
+    color: var(--light-font);
+    border: var(--light-border) 1px solid;
+    padding: 1rem 1.5rem;
+}
+
+.btn--size:focus{
+    border: var(--dark-border) 2px solid;
+}
+
+.btn--cart{
+    color: var(--dark-font);
+    border: var(--dark-border) 2px solid;
+    padding: 1rem 1.8rem;
+    font-weight: bold;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn--cart:hover{
+    background-color: var(--dark-border);
+    color: var(--light-font);
+}
+
+/** vertical ipad */
+@media only screen and (max-width: 991px) {
+
+    .item-img{
+        width: 70%;
+    }
+    .item-text{
+        width: 70%;
+        justify-self: center;
+    }
+}
+
+/** mobile */
+@media only screen and (max-width: 575px) {
+    .cloth-item{
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .item-img{
+        width: 90%;
+    }
+    .item-text{
+        width: 90%;
+        justify-self: center;
+    }
+
+    .item-title, .item-price{
+        border-bottom: none; 
+    }
+}
