@@ -15,18 +15,25 @@
 
 /** nav bar */
 header{
+    position: relative;
+}
+
+.nav-bar{
     background-color: var(--header-bg);
     padding: 0.5rem 0;
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 1fr 300px;
 }
 
 #my-cart{
+    width: 100px;
     grid-column: 2/3;
     color: var(--light-font)
 }
 /** cart */
 .cart-group{
+    position: absolute;
+    right: 200px;
     width: 300px;
     padding: 1rem;
     background-color: white;
@@ -111,7 +118,14 @@ header{
 
 /** vertical ipad */
 @media only screen and (max-width: 991px) {
-
+    .nav-bar{
+        grid-template-columns: 1fr 100px;
+    }
+    .cart-group{
+        position: absolute;
+        right: 30px;
+        width: 300px;
+    }
     .item-img{
         width: 70%;
     }
