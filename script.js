@@ -17,3 +17,18 @@ function myFunction() {
       }
     }
   }
+
+
+const buttonS = document.querySelector('#size-S')
+const buttonM = document.querySelector('#size-M')
+const buttonL = document.querySelector('#size-L')
+
+const displaySize = function(){
+    document.querySelector('.size-selected').textContent = this.value;
+}
+buttonS.addEventListener('click', displaySize);
+buttonM.addEventListener('click', displaySize);
+buttonL.addEventListener('click', displaySize);
+
+
+

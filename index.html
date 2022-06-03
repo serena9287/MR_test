@@ -10,7 +10,9 @@
 <body>
     <header>
         <div class="nav-bar">
-            <span onclick="myFunction()" class="dropbtn" id="my-cart">My Cart ( )</span>
+            <span onclick="myFunction()" class="dropbtn" id="my-cart">
+                My Cart (<span>0</span>)
+            </span>
         </div>
         <div class="cart-group" id="cart-group">
             <div class="cart-item">
@@ -42,12 +44,12 @@
                     eu fugiat nulla pariatur.
                 </p>
                 <p class="item-size">
-                    Size <span class="star">*</span>
+                    Size <span class="star">*</span> <span class="size-selected"></span>
                 </p>
                 <div class="btn-group">
-                    <button id="size-S" class="btn btn--size">S</button>
-                    <button id="size-M" class="btn btn--size">M</button>
-                    <button id="size-L" class="btn btn--size">L</button>
+                    <button id="size-S" class="btn btn--size" value="S">S</button>
+                    <button id="size-M" class="btn btn--size" value="M">M</button>
+                    <button id="size-L" class="btn btn--size" value="L">L</button>
                 </div>
                 <button class="btn btn--cart">ADD TO CART</button>
             </div>
