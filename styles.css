@@ -32,6 +32,9 @@ header{
 }
 /** cart */
 .cart-group{
+    display: none;
+}
+.cart-item{
     position: absolute;
     right: 200px;
     width: 300px;
@@ -42,11 +45,16 @@ header{
     display: grid;
     grid-template-columns: 30% 70%;
     column-gap: 2rem;
+    z-index: 1;
 }
+
 .cart-img{
     width: 100px;
 }
 
+.show {
+    display: block;
+}
 /** section */
 .cloth-item{
     display: grid;
