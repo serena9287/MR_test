@@ -25,6 +25,20 @@ header{
     grid-column: 2/3;
     color: var(--light-font)
 }
+/** cart */
+.cart-group{
+    width: 300px;
+    padding: 1rem;
+    background-color: white;
+    border: var(--light-border) 1px solid;
+    color: var(--dark-font);
+    display: grid;
+    grid-template-columns: 30% 70%;
+    column-gap: 2rem;
+}
+.cart-img{
+    width: 100px;
+}
 
 /** section */
 .cloth-item{
