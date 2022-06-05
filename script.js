@@ -106,7 +106,13 @@ $('#add-to-cart').click(function(event) {
   var name = $('.item-title').data('name'); 
   var price = Number($('.item-price').data('price'));
   var size =  $('.size-selected').html(); 
-  shoppingCart.addItemToCart(name, price, 1, size);
+  if($('.size-selected').html() == ""){
+    alert('Please select you size');
+  } 
+  else
+  {
+    shoppingCart.addItemToCart(name, price, 1, size);
+  } 
   displayCart();
 });
 
