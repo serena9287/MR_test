@@ -1,8 +1,14 @@
 var modal = document.getElementById("cart-group");
 
   $('#my-cart').click(function(){
+    if (shoppingCart.totalCount() > 0){
       modal.style.display = "block";
+    } else {
+      $('.items-group').html("<p class='nothing'>Nothing in the Cart</p>");
+      modal.style.display = "block";
+    }
   })
+  
   $('.close').click(function(){
     modal.style.display = "none";
   })

@@ -30,6 +30,7 @@ header{
     grid-column: 2/3;
     color: var(--light-font)
 }
+
 /** cart */
 .cart-group{
     display: none;
@@ -41,7 +42,13 @@ header{
     text-align: right;
     border: var(--light-border) 1px solid;
 }
-
+.nothing{
+    text-align: center;
+    border: var(--light-border) 1px solid;
+    margin: 0;
+    padding: 1rem;
+    background-color: white;
+}
 .cart-item{
     padding: 1rem;
     background-color: white;
@@ -60,6 +67,7 @@ header{
 .show {
     display: block;
 }
+
 /** section */
 .cloth-item{
     display: grid;
