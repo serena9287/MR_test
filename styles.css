@@ -33,11 +33,16 @@ header{
 /** cart */
 .cart-group{
     display: none;
-}
-.cart-item{
     position: absolute;
     right: 200px;
     width: 300px;
+}
+.close{
+    text-align: right;
+    border: var(--light-border) 1px solid;
+}
+
+.cart-item{
     padding: 1rem;
     background-color: white;
     border: var(--light-border) 1px solid;

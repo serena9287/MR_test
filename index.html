@@ -6,23 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MR Frontend Test - Serena</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <header>
         <div class="nav-bar">
-            <span onclick="myFunction()" class="dropbtn" id="my-cart">
-                My Cart (<span>0</span>)
+            <span id="my-cart">
+                My Cart (<span class="total-count">0</span>)
             </span>
         </div>
         <div class="cart-group" id="cart-group">
-            <div class="cart-item">
-                <img class="cart-img" src="https://mrdevelopertestassets.s3.ap-southeast-2.amazonaws.com/classic-tee.jpg">
-                <div class="cart-text">
-                    <p class="cart-title">Classic Tee</p>
-                    <p class="cart price"> x $75.00</p>
-                    <p class="cart-size">Size: </p> 
-                </div>
-            </div>           
+            <div class="close">X</div>
+            <div class="items-group">
+                
+            </div>
         </div>
     </header>
 
@@ -30,10 +27,10 @@
         <section class="cloth-item">
             <img class="item-img" src="https://mrdevelopertestassets.s3.ap-southeast-2.amazonaws.com/classic-tee.jpg">
             <div class="item-text">
-                <h2 class="item-title">
+                <h2 class="item-title" data-name="Classic Tee">
                     Classic Tee
                 </h2>
-                <p class="item-price">
+                <p class="item-price" data-price="75.00">
                     $75.00
                 </p>
                 <p class="item-desc">
@@ -47,11 +44,11 @@
                     Size <span class="star">*</span> <span class="size-selected"></span>
                 </p>
                 <div class="btn-group">
-                    <button id="size-S" class="btn btn--size" value="S">S</button>
-                    <button id="size-M" class="btn btn--size" value="M">M</button>
-                    <button id="size-L" class="btn btn--size" value="L">L</button>
+                    <button id="size-S" class="btn btn--size" value="S" data-size="S">S</button>
+                    <button id="size-M" class="btn btn--size" value="M" data-size="M">M</button>
+                    <button id="size-L" class="btn btn--size" value="L" data-size="L">L</button>
                 </div>
-                <button class="btn btn--cart">ADD TO CART</button>
+                <button id="add-to-cart"class="btn btn--cart">ADD TO CART</button>
             </div>
         </section>
     </main>
