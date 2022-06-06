@@ -1,3 +1,115 @@
+async function populate() {
+
+  const requestURL = 'https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product';
+  const request = new Request(requestURL);
+
+  const response = await fetch(request);
+  const productInfo = await response.json();
+
+  populateContent(productInfo);
+  console.log(productInfo);
+}
+
+function populateContent(obj){
+  const section = document.querySelector('section');
+  const image = document.createElement('img');
+  image.src = obj['imageURL'];
+  image.classList.add('item-img');
+  section.appendChild(image);
+
+  const text = document.createElement('div');
+  text.classList.add('item-text');
+  section.appendChild(text);
+
+  const title = document.createElement('h2'); //data-name
+  title.textContent = obj['title'];
+  title.classList.add('item-title');
+  title.dataset.name = obj['title'] //data
+  text.appendChild(title); 
+
+  const price = document.createElement('p'); //data-price
+  price.textContent = "$ " + obj['price']; 
+  price.classList.add('item-price');
+  price.dataset.price = obj['price'] //data
+  text.appendChild(price); 
+
+  const desc = document.createElement('p'); 
+  desc.textContent = obj['description']; 
+  desc.classList.add('item-desc');
+  text.appendChild(desc); 
+
+
+  const size = document.createElement('p'); 
+  size.textContent = "Size: ";
+  size.classList.add('item-size');
+
+  const star = document.createElement('span');
+  star.textContent = "*";
+  star.classList.add('star');
+  size.appendChild(star);
+
+  const sizeSelected = document.createElement('span');
+  sizeSelected.classList.add('size-selected');
+  size.appendChild(sizeSelected);
+
+  text.appendChild(size); 
+
+  const sizeOptions = obj['sizeOptions'];
+
+  const btnGroup = document.createElement('div');
+  btnGroup.classList.add('btn-group');
+
+  for (const size of sizeOptions){
+      const btn = document.createElement('button');
+      btn.innerHTML = size.label;
+      btn.classList.add('btn');  //add id
+      btn.classList.add('btn--size'); 
+      btn.dataset.size = size.label; //data-size
+      btnGroup.appendChild(btn);
+  }
+  text.appendChild(btnGroup);
+
+  $('.btn--size').on("click", function(){
+    var size = $(this).data('size');
+    $('.size-selected').html(size);
+  })
+  //$(container).on("click", ".btn-size", () => { ... });
+
+  /** 
+  const addBtn = document.createElement('button');
+  addBtn.innerHTML = "ADD TO CART";
+  addBtn.classList.add('btn');
+  addBtn.classList.add('btn--cart'); //id
+  text.appendChild(addBtn);
+  
+  addBtn.onclick = function(event) {
+    event.preventDefault();
+    var name = $('.item-title').data('name'); 
+    var price = Number($('.item-price').data('price'));
+    var size =  $('.size-selected').html(); 
+    if($('.size-selected').html() == ""){
+      alert('Please select you size');
+    } 
+    else
+    {
+      shoppingCart.addItemToCart(name, price, 1, size);
+    } 
+    displayCart();
+  };
+*/
+
+}
+
+populate();
+
+
+if (document.readyState == 'loading') {
+  document.addEventListener('DOMContentLoaded', ready)
+} else {
+  ready()
+}
+
+function ready() {
 var modal = document.getElementById("cart-group");
 
   $('#my-cart').click(function(){
@@ -8,7 +120,7 @@ var modal = document.getElementById("cart-group");
       modal.style.display = "block";
     }
   })
-  
+
   $('.close').click(function(){
     modal.style.display = "none";
   })
@@ -20,10 +132,10 @@ var modal = document.getElementById("cart-group");
   }
 
 //Select size
-$('.btn--size').on("click", function(){
-  var size = $(this).data('size');
-  $('.size-selected').html(size);
-})
+//$('.btn--size').on("click", function(){
+//  var size = $(this).data('size');
+//  $('.size-selected').html(size);
+//})
 
 // ************************************************
 // Shopping Cart API
@@ -107,7 +219,8 @@ var shoppingCart = (function() {
 // Triggers / Events
 // ***************************************** 
 // Add item
-$('#add-to-cart').click(function(event) {
+
+$('.btn--cart').click(function(event) {
   event.preventDefault();
   var name = $('.item-title').data('name'); 
   var price = Number($('.item-price').data('price'));
@@ -138,11 +251,11 @@ function displayCart() {
   ` 
   }
 
-  console.log(cartArray); // del
-  console.log(output); // del
   $('.items-group').html(output);
   $('.total-count').html(shoppingCart.totalCount());  
 }
 
 
 displayCart();
+};
+
