@@ -1,3 +1,4 @@
+/**fetch data */
 async function populate() {
 
   const requestURL = 'https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product';
@@ -21,16 +22,16 @@ function populateContent(obj){
   text.classList.add('item-text');
   section.appendChild(text);
 
-  const title = document.createElement('h2'); //data-name
+  const title = document.createElement('h2'); 
   title.textContent = obj['title'];
   title.classList.add('item-title');
-  title.dataset.name = obj['title'] //data
+  title.dataset.name = obj['title'] 
   text.appendChild(title); 
 
-  const price = document.createElement('p'); //data-price
+  const price = document.createElement('p'); 
   price.textContent = "$ " + obj['price']; 
   price.classList.add('item-price');
-  price.dataset.price = obj['price'] //data
+  price.dataset.price = obj['price'] 
   text.appendChild(price); 
 
   const desc = document.createElement('p'); 
@@ -62,9 +63,9 @@ function populateContent(obj){
   for (const size of sizeOptions){
       const btn = document.createElement('button');
       btn.innerHTML = size.label;
-      btn.classList.add('btn');  //add id
+      btn.classList.add('btn');  
       btn.classList.add('btn--size'); 
-      btn.dataset.size = size.label; //data-size
+      btn.dataset.size = size.label; 
       btnGroup.appendChild(btn);
   }
   text.appendChild(btnGroup);
@@ -73,31 +74,6 @@ function populateContent(obj){
     var size = $(this).data('size');
     $('.size-selected').html(size);
   })
-  //$(container).on("click", ".btn-size", () => { ... });
-
-  /** 
-  const addBtn = document.createElement('button');
-  addBtn.innerHTML = "ADD TO CART";
-  addBtn.classList.add('btn');
-  addBtn.classList.add('btn--cart'); //id
-  text.appendChild(addBtn);
-  
-  addBtn.onclick = function(event) {
-    event.preventDefault();
-    var name = $('.item-title').data('name'); 
-    var price = Number($('.item-price').data('price'));
-    var size =  $('.size-selected').html(); 
-    if($('.size-selected').html() == ""){
-      alert('Please select you size');
-    } 
-    else
-    {
-      shoppingCart.addItemToCart(name, price, 1, size);
-    } 
-    displayCart();
-  };
-*/
-
 }
 
 populate();
@@ -131,12 +107,6 @@ var modal = document.getElementById("cart-group");
     }
   }
 
-//Select size
-//$('.btn--size').on("click", function(){
-//  var size = $(this).data('size');
-//  $('.size-selected').html(size);
-//})
-
 // ************************************************
 // Shopping Cart API
 // ************************************************
@@ -148,11 +118,12 @@ var shoppingCart = (function() {
   cart = [];
   
   // Constructor
-  function Item(name, price, count, size) { 
+  function Item(name, price, count, size, img) { 
     this.name = name;
     this.price = price;
     this.count = count;
     this.size = size; 
+    this.img = img;
   }
   
   // Save cart
@@ -175,7 +146,7 @@ var shoppingCart = (function() {
   var obj = {};
   
   // Add to cart
-  obj.addItemToCart = function(name, price, count, size) { 
+  obj.addItemToCart = function(name, price, count, size, img) { 
     for(var item in cart) {
       if(cart[item].size === size) { //
         cart[item].count ++;
@@ -183,7 +154,7 @@ var shoppingCart = (function() {
         return;
       }
     }
-    var item = new Item(name, price, count, size); 
+    var item = new Item(name, price, count, size, img); 
     cart.push(item);
     saveCart();
   }
@@ -224,14 +195,16 @@ $('.btn--cart').click(function(event) {
   event.preventDefault();
   var name = $('.item-title').data('name'); 
   var price = Number($('.item-price').data('price'));
+  var img = $('.item-img').attr('src');
   var size =  $('.size-selected').html(); 
   if($('.size-selected').html() == ""){
     alert('Please select you size');
   } 
   else
   {
-    shoppingCart.addItemToCart(name, price, 1, size);
+    shoppingCart.addItemToCart(name, price, 1, size, img);
   } 
+  console.log(img);
   displayCart();
 });
 
@@ -241,7 +214,7 @@ function displayCart() {
   for(var i in cartArray) { 
       output += `
         <div class="cart-item">
-            <img class="cart-img" src="https://mrdevelopertestassets.s3.ap-southeast-2.amazonaws.com/classic-tee.jpg">
+            <img class="cart-img" src=${cartArray[i].img}>
             <div class="cart-text">
                 <p class="cart-title">${cartArray[i].name}</p>
                 <p class="cart-price"><span class="quantity">${cartArray[i].count}</span> x $${cartArray[i].price}</p>
@@ -250,7 +223,7 @@ function displayCart() {
         </div>  
   ` 
   }
-
+  console.log(cartArray);
   $('.items-group').html(output);
   $('.total-count').html(shoppingCart.totalCount());  
 }
